@@ -78,11 +78,26 @@ public class Song {
         }
         return true;
     }
+
+    /**
+     * @return Generate the hashcode value for the object
+     */
     @Override
     public int hashCode() {
         int hash = 13;
         hash = hash + (11 * Objects.hash(this.artist));
         hash = hash + (11 * Objects.hash(this.title));
         return hash;
+    }
+
+    /**
+     * @return The string version of the artist and title object
+     */
+    @Override
+    public String toString() {
+        return "Song{" +
+                "artist='" + artist + '\'' +
+                ", title='" + title + '\'' +
+                '}';
     }
 }
