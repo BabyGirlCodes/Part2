@@ -1,5 +1,7 @@
 package business;
 
+import java.util.Objects;
+
 /**
  *
  * @author michelle
@@ -53,5 +55,34 @@ public class Song {
      */
     public void setTitle(){
         this.title = title;
+    }
+    /**
+     * Checks supplied object against the current song for equality. Equality is based on
+     * artist and title both being identical.
+     * @param o The object being compared against.
+     * @return True if artist and title match; false if the object supplied is not a Song or
+     * artist and title do not match.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Song)) {
+            return false;
+        }
+        Song s = (Song) o;
+
+        if (!this.artist.equals(s.artist)) {
+            return false;
+        }
+        if (!this.title.equals(s.title)) {
+            return false;
+        }
+        return true;
+    }
+    @Override
+    public int hashCode() {
+        int hash = 13;
+        hash = hash + (11 * Objects.hash(this.artist));
+        hash = hash + (11 * Objects.hash(this.title));
+        return hash;
     }
 }
