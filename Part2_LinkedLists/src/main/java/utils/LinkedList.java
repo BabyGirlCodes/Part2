@@ -3,6 +3,8 @@ package utils;
 
 import business.Song;
 
+import java.util.NoSuchElementException;
+
 /**
  * @author michelle
  */
@@ -13,6 +15,7 @@ public class LinkedList {
 
     public LinkedList() {
         this.first = null;
+        this.last = null;
         this.numElements = 0;
     }
 
@@ -72,16 +75,13 @@ public class LinkedList {
         if(song == null){
             throw new IllegalArgumentException("List cannot handle null elements.");
         }
-        Node newNode = new Node(song);
-        Node current = newNode;
-        while (current.next != null) {
-            current = current.next;
-        }
-        current.next = newNode;
+        Node current = first;
+
         for (int i = 0; i < numElements; i++) {
-            if (current.equals(song)) {
+            if (current.song.equals(song)) {
                 return i;
             }
+            current =current.next;
         }
         return -1;
 
@@ -112,8 +112,50 @@ public class LinkedList {
      */
     public Song tail() {
         if (isEmpty()) {
-            throw new IllegalArgumentException("This list cannot be empty");
+            throw new NoSuchElementException("List cannot be empty");
         }
         return last.song;
+    }
+
+    /**
+     * Removes the first instance of the specified Song from the list.
+     *  The remove method is to remove the first instance of a song found in the list.Validations are in place for null values coming in, and if the list is empty to start with. If the song is found in the first space,
+     *  the first and last are both set to null. If it is found in the middle, the current skips over the position to be deleted
+     *  automatically deleting the middle one, and setting the current one to the last.
+     *
+     * @param song The Song to remove.
+     * @return True if the Song was removed, false otherwise.
+     */
+    public boolean remove(Song song) {
+        if (song == null) {
+            throw new IllegalArgumentException("Song to remove cannot be null.");
+        }
+
+        if (isEmpty()) {
+            return false;
+        }
+
+        if (first.song.equals(song)) {
+            first = first.next;
+            if (first == null) {
+                last = null;
+            }
+            numElements--;
+            return true;
+        }
+
+        Node current = first;
+        while (current.next != null) {
+            if (current.next.song.equals(song)) {
+                current.next = current.next.next;
+                if (current.next == null) {
+                    last = current; // Update last if last element was removed
+                }
+                numElements--;
+                return true;
+            }
+            current = current.next;
+        }
+        return false; // Song not found
     }
 }
