@@ -36,6 +36,10 @@ public class LinkedList {
         return numElements;
     }
 
+
+    /**
+     * @return true if there are no elements in the list, false otherwise.
+     */
     public boolean isEmpty() {
         return numElements == 0;
 
