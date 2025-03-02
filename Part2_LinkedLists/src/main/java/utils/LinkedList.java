@@ -105,4 +105,15 @@ public class LinkedList {
         }
         numElements++;
     }
+    /**
+     * Returns the last element in the list.
+     *
+     * @return The last Song in the list, or null if the list is empty.
+     */
+    public Song tail() {
+        if (isEmpty()) {
+            throw new IllegalArgumentException("This list cannot be empty");
+        }
+        return last.song;
+    }
 }
