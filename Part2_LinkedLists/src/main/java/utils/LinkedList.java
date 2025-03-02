@@ -98,6 +98,7 @@ public class LinkedList {
         if (song == null) {
             throw new IllegalArgumentException("Null cannot be added to the List");
         }
+//        This validation is not making any of my LinkedListTest pass
         if (!song.getArtist().toLowerCase().equals(this.checkArtist)){
             throw new IllegalArgumentException("The song artist must match the list's artist");
         }
