@@ -3,7 +3,6 @@ package business;
 import java.util.Objects;
 
 /**
- *
  * @author michelle
  */
 public class Song {
@@ -13,17 +12,18 @@ public class Song {
     /**
      * Constructor setting the artist and title to a default value of "Joe Bloggs" and "Mmmbops"
      */
-    public Song(){
+    public Song() {
         this.artist = "Joe Bloggs";
         this.title = "Mmmbops";
     }
 
     /**
      * Construct a song object to a specified artist or title
-     * @param artist  The name of the artist
-     * @param title The title of the song
+     *
+     * @param artist The name of the artist
+     * @param title  The title of the song
      */
-    public Song(String artist, String title){
+    public Song(String artist, String title) {
         this.artist = artist;
         this.title = title;
     }
@@ -39,26 +39,28 @@ public class Song {
     /**
      * Set a new artist name
      */
-    public void setArtist(){
+    public void setArtist() {
         this.artist = artist;
     }
 
     /**
      * @return The title of the song
      */
-    public String getTitle(){
+    public String getTitle() {
         return title;
     }
 
     /**
      * Set a new title of the song
      */
-    public void setTitle(){
+    public void setTitle() {
         this.title = title;
     }
+
     /**
      * Checks supplied object against the current song for equality. Equality is based on
      * artist and title both being identical.
+     *
      * @param o The object being compared against.
      * @return True if artist and title match; false if the object supplied is not a Song or
      * artist and title do not match.

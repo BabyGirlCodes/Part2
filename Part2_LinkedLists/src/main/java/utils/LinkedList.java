@@ -1,16 +1,15 @@
 package utils;
 
 
+import business.Song;
 
 /**
- *
  * @author michelle
  */
-public class LinkedList
-{
-    private Node first;
+public class LinkedList {
+    private final Node first;
     private Node last;
-    private int numElements;
+    private final int numElements;
 
     public LinkedList() {
         this.first = null;
@@ -18,14 +17,15 @@ public class LinkedList
     }
 
     private static class Node {
-        private String data;
+
+        private final Song song;
         private Node next;
 
-
-        public Node(String data) {
-            this.data = data;
+        public Node(Song song) { // Changed constructor
+            this.song = song;
             this.next = null;
         }
+
 
     }
 
@@ -35,8 +35,9 @@ public class LinkedList
     public int size() {
         return numElements;
     }
-    public boolean isEmpty(){
-        return numElements==0;
+
+    public boolean isEmpty() {
+        return numElements == 0;
 
     }
 
@@ -44,19 +45,42 @@ public class LinkedList
      * @param pos The position that contains the data to be retrieved
      * @return The data(Song) present in the position specified
      */
-    public String get(int pos){
+    public Song get(int pos) {
 //        VALIDATION
-        if (isEmpty()|| pos < 0|| pos>= numElements){
+        if (isEmpty() || pos < 0 || pos >= numElements) {
             throw new IndexOutOfBoundsException("Position to be found must be between " + "0 and " + (numElements - 1) +
-                    ". Position provided: " +pos+ "is not within this range");
+                    ". Position provided: " + pos + "is not within this range");
 
         }
         Node current = first;
-        for (int i = 0; i <  pos; i++) {
+        for (int i = 0; i < pos; i++) {
             current = current.next;
         }
-            return current.data;
+        return current.song;
     }
 
+    /**
+     * @param song The Song to be found in the list.
+     * @return The index of the Song in the list, or -1 if not found.
+     */
+    public int indexOf(Song song) {
+//        VALIDATION
+        if(song == null){
+            throw new IllegalArgumentException("List cannot handle null elements.");
+        }
+        Node newNode = new Node(song);
+        Node current = newNode;
+        while (current.next != null) {
+            current = current.next;
+        }
+        current.next = newNode;
+        for (int i = 0; i < numElements; i++) {
+            if (current.equals(song)) {
+                return i;
+            }
+        }
+        return -1;
 
+
+    }
 }
