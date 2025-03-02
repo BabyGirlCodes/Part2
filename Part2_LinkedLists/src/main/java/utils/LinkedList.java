@@ -12,11 +12,13 @@ public class LinkedList {
     private Node first;
     private Node last;
     private int numElements;
+    private String checkArtist;
 
     public LinkedList() {
         this.first = null;
         this.last = null;
         this.numElements = 0;
+        this.checkArtist = null;
     }
 
     private static class Node {
@@ -92,8 +94,12 @@ public class LinkedList {
      * @param song The Song to add.
      */
     public void add(Song song) {
+//        VALIDATION
         if (song == null) {
             throw new IllegalArgumentException("Null cannot be added to the List");
+        }
+        if (!song.getArtist().toLowerCase().equals(this.checkArtist)){
+            throw new IllegalArgumentException("The song artist must match the list's artist");
         }
         Node newNode = new Node(song);
         if (isEmpty()) {
