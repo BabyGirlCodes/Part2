@@ -7,9 +7,9 @@ import business.Song;
  * @author michelle
  */
 public class LinkedList {
-    private final Node first;
+    private Node first;
     private Node last;
-    private final int numElements;
+    private int numElements;
 
     public LinkedList() {
         this.first = null;
@@ -85,6 +85,24 @@ public class LinkedList {
         }
         return -1;
 
-
+    }
+    /**
+     * Adds a Song to the end of the list.
+     *
+     * @param song The Song to add.
+     */
+    public void add(Song song) {
+        if (song == null) {
+            throw new IllegalArgumentException("Null cannot be added to the List");
+        }
+        Node newNode = new Node(song);
+        if (isEmpty()) {
+            first = newNode;
+            last = newNode;
+        } else {
+            last.next = newNode;
+            last = newNode;
+        }
+        numElements++;
     }
 }
