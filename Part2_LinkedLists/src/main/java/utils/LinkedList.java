@@ -29,5 +29,12 @@ public class LinkedList
 
     }
 
+    /**
+     * @return the size of the elements in the list
+     */
+    public int size() {
+        return numElements;
+    }
+
 
 }
